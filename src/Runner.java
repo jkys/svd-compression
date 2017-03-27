@@ -9,12 +9,14 @@ import javax.imageio.ImageIO;
  */
 public class Runner {
   public static void main (String[] args) throws IOException {
-    BufferedImage image = ImageIO.read(new File("src/images/image1.jpg"));
+    Image image = new Image("src/images/image1.jpg");
+    double[][] imageMatrix = image.getImageMatrix();
 
-    ImageVectors matrix = new ImageVectors(image);
-    matrix.rotateImageClockwise();
-    image = matrix.getImage();
+    Matrix matrix = new Matrix(imageMatrix);
 
-    ImageIO.write(image, "jpg", new File("src/images/imageUpdated.jpg"));
+    imageMatrix = matrix.getTransposedMatrix();
+    image.setImageMatrix(imageMatrix);
+
+    ImageIO.write(image.getImage(), "jpg", new File("src/images/imageUpdated.jpg"));
   }
 }
