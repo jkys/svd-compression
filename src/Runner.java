@@ -1,10 +1,5 @@
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
-import javax.imageio.ImageIO;
 
 /**
  * Created by jonathankeys on 3/26/17
@@ -13,10 +8,11 @@ import javax.imageio.ImageIO;
 public class Runner {
   public static void main (String[] args) throws IOException {
     //Create matrix from image
-    Image image = new Image("src/images/image0.jpg");
-    int[][] imageMatrix = image.getImageMatrix();
+//    Image image = new Image("src/images/image0.jpg");
+//    int[][] imageMatrix = image.getImageMatrix();
 
     // Example Matrices
+    int[][] twoByTwo = {{5, 5}, {-1, 7}};
     int[][] twoByThree = {{1, 2, 3}, {4, 5, 6}};
     int[][] threeByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
     int[][] fourByFour = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
@@ -29,8 +25,17 @@ public class Runner {
     matrices.push(fourByFour);
     matrices.push(sixByThree);
 
-//    transpose(matrices);
-    multiply(twoByThree, fourByFour);
+    Matrix matrix = new Matrix(twoByTwo);
+    Matrix transpose = matrix.transposeMatrix();
+    Matrix square = transpose.multiplyMatrix(matrix);
+
+    matrix.printMatrix();
+    transpose.printMatrix();
+    square.printMatrix();
+    int det = square.getDeterminant();
+
+    System.out.println(det);
+
 
 
     // Do actions on image and set to new file "imageUpdated"
@@ -42,7 +47,7 @@ public class Runner {
 
   private static void multiply(int[][] a, int[][] b) {
     Matrix multiplier = new Matrix(a);
-    int[][] product = multiplier.multiply(b);
+    int[][] product = multiplier.multiplyArray(b);
 
     if (product != null) {
       Matrix productMatrix = new Matrix(product);
@@ -58,7 +63,7 @@ public class Runner {
       matrix.printMatrixSpecs();
       matrix.printMatrix();
 
-      matrix.setMatrix(matrix.transposeMatrix());
+      matrix.setMatrix(matrix.transposeArray());
       matrix.printMatrixSpecs();
       matrix.printMatrix();
     }

@@ -5,14 +5,12 @@
 public class Matrix {
   private int[][] matrix;
 
+  // Constructor
   public Matrix(int[][] imageMatrix) {
     this.matrix = imageMatrix;
   }
 
-  public void printMatrixSpecs () {
-    System.out.println(String.format("Matrix: %s x %s\n", getRowCount(), getColumnCount()));
-  }
-
+  // Matrix Row and Column Counter
   private int getRowCount() {
     return this.matrix.length;
   }
@@ -29,7 +27,16 @@ public class Matrix {
     return matrix[0].length;
   }
 
-  public int[][] transposeMatrix () {
+  // Transposing Matrix
+  public int[][] transposeArray () {
+    return transpose();
+  }
+
+  public Matrix transposeMatrix () {
+    return new Matrix(transpose());
+  }
+
+  private int[][] transpose () {
     int rows = getRowCount();
     int columns = getColumnCount();
 
@@ -46,7 +53,8 @@ public class Matrix {
     return transposedMatrix;
   }
 
-  public int[][] multiply (int[][] multiplicand) {
+  // Multipling Matrices
+  private int[][] multArray (int[][] multiplicand) {
     int multiplierRows = getRowCount();
     int multiplierColumns = getColumnCount();
 
@@ -54,8 +62,9 @@ public class Matrix {
     int multiplicandColumns = getColumnCount(multiplicand);
 
     if (multiplierColumns != multiplicandRows) {
-      System.out.println("The Matrices are not compatible");
-      return null;
+      throw new Error(String.format("Matrices inner dimensions need to be equal, found %s x [%s] and [%s] x %s",
+          multiplierRows,
+          multiplierColumns, multiplicandRows, multiplicandColumns));
     }
 
     int[][] product = new int[multiplierRows][multiplicandColumns];
@@ -71,6 +80,87 @@ public class Matrix {
     return product;
   }
 
+  private int[][] multMatrix (Matrix multiplicand) {
+    int multiplierRows = getRowCount();
+    int multiplierColumns = getColumnCount();
+
+    int multiplicandRows = multiplicand.getRowCount();
+    int multiplicandColumns = multiplicand.getColumnCount();
+
+    if (multiplierColumns != multiplicandRows) {
+      throw new Error(String.format("Matrices inner dimensions need to be equal, found %s x [%s] and [%s] x %s",
+          multiplierRows,
+          multiplierColumns, multiplicandRows, multiplicandColumns));
+    }
+
+    int[][] product = new int[multiplierRows][multiplicandColumns];
+
+    for (int i = 0; i < multiplierRows; i++) {
+      for (int j = 0; j < multiplicandColumns; j++) {
+        for (int k = 0; k < multiplierColumns; k++) {
+          product[i][j] += matrix[i][k] * multiplicand.getMatrix()[k][j];
+        }
+      }
+    }
+
+    return product;
+  }
+
+  public int[][] multiplyArray (int[][] multiplicand) {
+    return multArray(multiplicand);
+  }
+
+  public int[][] multiplyArray (Matrix multiplicand) {
+    return multMatrix(multiplicand);
+  }
+
+  public Matrix multiplyMatrix (int[][] multiplicand) {
+    return new Matrix(multArray(multiplicand));
+  }
+
+  public Matrix multiplyMatrix (Matrix multiplicand) {
+    return new Matrix(multMatrix(multiplicand));
+  }
+
+  // Determinants of matrix
+  public int getDeterminant() {
+    if (getColumnCount() != getRowCount()) {
+      throw new Error(String.format("Matrix needs to be a square, found %s x %s.", getRowCount(), getColumnCount()));
+    }
+    return getDeterminant(this.matrix);
+  }
+
+  private int getDeterminant(int[][] matrix) {
+    int rows = getRowCount(matrix);
+    int columns = getColumnCount(matrix);
+    
+    if(rows == 1 & columns == 1){
+      return(matrix[0][0]);
+    }
+
+    int determinant = 0;
+
+    for(int i = 0; i < rows; i++){
+      int[][] innerMatrix = new int[rows - 1][columns - 1];
+      for(int j = 1; j < rows; j++){
+        for(int k = 0; k < columns; k++){
+          if(k < i){
+            innerMatrix[j - 1][k] = matrix[j][k];
+          }
+          else if(k > i){
+            innerMatrix[j - 1][k - 1] = matrix[j][k];
+          }
+        }
+      }
+      if(i % 2 != 0){
+        matrix[0][i] *= -1;
+      }
+      determinant += matrix[0][i] * (getDeterminant(innerMatrix));
+    }
+    return(determinant);
+  }
+
+  // Getter and Setter
   public int[][] getMatrix () {
     return this.matrix;
   }
@@ -79,6 +169,7 @@ public class Matrix {
     this.matrix = newMatrix;
   }
 
+  //Print matrix
   public void printMatrix () {
     int columns = getColumnCount();
     for (int[] aMatrix : this.matrix) {
@@ -92,6 +183,10 @@ public class Matrix {
       System.out.println();
     }
     System.out.println();
+  }
+
+  public void printMatrixSpecs () {
+    System.out.println(String.format("Matrix: %s x %s\n", getRowCount(), getColumnCount()));
   }
 
 //  public void scaleMatrix (int scale) {

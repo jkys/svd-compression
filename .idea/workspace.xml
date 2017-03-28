@@ -29,8 +29,8 @@
       <file leaf-file-name="Runner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Runner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-94">
-              <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -39,7 +39,7 @@
       <file leaf-file-name="Image.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Image.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
+            <state relative-caret-position="349">
               <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -57,17 +57,17 @@
       <file leaf-file-name="Matrix.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Matrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+            <state relative-caret-position="240">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding>
-                <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
-                <element signature="e#336#337#0" expanded="true" />
-                <element signature="e#371#372#0" expanded="true" />
-                <element signature="e#405#406#0" expanded="true" />
-                <element signature="e#443#444#0" expanded="true" />
-                <element signature="method#transposeMatrix#0;class#Matrix#0" expanded="false" />
+                <element signature="method#transpose#0;class#Matrix#0" expanded="false" />
+                <element signature="method#multArray#0;class#Matrix#0" expanded="false" />
+                <element signature="method#multMatrix#0;class#Matrix#0" expanded="false" />
+                <element signature="method#getDeterminant#0;class#Matrix#0" expanded="false" />
+                <element signature="method#getDeterminant#1;class#Matrix#0" expanded="false" />
                 <element signature="method#printMatrix#0;class#Matrix#0" expanded="false" />
-                <element signature="e#2209#2250#0" expanded="false" />
+                <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
+                <element signature="e#4929#4970#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -622,12 +622,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1490627591086</updated>
-      <workItem from="1490627596904" duration="8786000" />
+      <workItem from="1490627596904" duration="11711000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8786000" />
+    <option name="totallyTimeSpent" value="11711000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -692,7 +692,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -725,17 +725,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Runner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-94">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Image.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
+        <state relative-caret-position="349">
           <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -749,19 +741,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Runner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Matrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="53" column="17" selection-start-line="53" selection-start-column="17" selection-end-line="53" selection-end-column="17" />
+        <state relative-caret-position="240">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding>
-            <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
-            <element signature="e#336#337#0" expanded="true" />
-            <element signature="e#371#372#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="method#transposeMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#transpose#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#1;class#Matrix#0" expanded="false" />
             <element signature="method#printMatrix#0;class#Matrix#0" expanded="false" />
-            <element signature="e#2209#2250#0" expanded="false" />
+            <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
+            <element signature="e#4929#4970#0" expanded="false" />
           </folding>
         </state>
       </provider>
