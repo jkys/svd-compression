@@ -3,57 +3,54 @@
  *
  */
 public class Matrix {
-  private double[][] matrix;
-  private double[][] transposedMatrix;
+  private int[][] matrix;
+  private int[][] transposedMatrix;
 
-  public Matrix(double[][] imageMatrix) {
+  public Matrix(int[][] imageMatrix) {
     this.matrix = imageMatrix;
+  }
+
+  public void printMatrixSpecs () {
+    System.out.println(String.format("Matrix: %s x %s\n", this.matrix.length, this.matrix[0].length));
   }
 
   private void transposeMatrix () {
     int height = this.matrix.length;
     int width = this.matrix[0].length;
 
-    this.transposedMatrix = new double[width][height];
+    this.transposedMatrix = new int[width][height];
+
     if (this.matrix.length > 0) {
       for (int i = 0; i < width; i++) {
         for (int j = 0; j < height; j++) {
-          this.transposedMatrix[j][i] = this.matrix[i][j];
+          this.transposedMatrix[i][j] = this.matrix[j][i];
+          this.transposedMatrix[i][j] = this.matrix[j][i];
         }
       }
     }
   }
 
-  public double[][] getTransposedMatrix () {
+  public int[][] getTransposedMatrix () {
     transposeMatrix();
     return this.transposedMatrix;
   }
 
-  public double[][] getMatrix () {
+  public int[][] getMatrix () {
     return this.matrix;
   }
 
   public void printMatrix () {
-    int height = this.matrix.length;
-    int width = this.matrix[0].length;
-
-    for (double[] aMatrix : this.matrix) {
-      for (int j = 0; j < width; j++) {
-        System.out.print(aMatrix[j] + " ");
+    for (int[] aMatrix : this.matrix) {
+      for (int j = 0; j < this.matrix[0].length; j++) {
+        String val = aMatrix[j] + " ";
+        if (val.length() == 2) {
+          val += " ";
+        }
+        System.out.print(val + "\t");
       }
       System.out.println();
     }
-  }
-
-  public void printTransposedMatrix () {
-    int width = this.transposedMatrix[0].length;
-
-    for (double[] aTransposedMatrix : this.transposedMatrix) {
-      for (int j = 0; j < width; j++) {
-        System.out.print(aTransposedMatrix[j] + " ");
-      }
-      System.out.println();
-    }
+    System.out.println();
   }
 
 //  public void scaleMatrix (int scale) {
