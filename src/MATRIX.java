@@ -53,7 +53,7 @@ public class Matrix {
     return transposedMatrix;
   }
 
-  // Multipling Matrices
+  // Multiplying Matrices
   private int[][] multArray (int[][] multiplicand) {
     int multiplierRows = getRowCount();
     int multiplierColumns = getColumnCount();
@@ -122,6 +122,108 @@ public class Matrix {
     return new Matrix(multMatrix(multiplicand));
   }
 
+  // Adding Matrices
+  private int[][] addArray (int[][] b) {
+    int rows = getRowCount();
+    int columns = getColumnCount();
+
+    int[][] sum = new int[rows][columns];
+
+    for (int i = 0; i < rows; i++)
+    {
+      for (int j = 0; j < columns; j++)
+      {
+        sum[i][j] = this.matrix[i][j] + b[i][j];
+      }
+    }
+
+    return sum;
+  }
+
+  private int[][] addMatrix (Matrix b) {
+    int rows = getRowCount();
+    int columns = getColumnCount();
+
+    int[][] sum = new int[rows][columns];
+
+    for (int i = 0; i < rows; i++)
+    {
+      for (int j = 0; j < columns; j++)
+      {
+        sum[i][j] = this.matrix[i][j] + b.getMatrix()[i][j];
+      }
+    }
+
+    return sum;
+  }
+
+  public int[][] additionArray (Matrix b) {
+    return addMatrix(b);
+  }
+
+  public int[][] additionArray (int[][] b) {
+    return addArray(b);
+  }
+
+  public Matrix additionMatrix (Matrix b) {
+    return new Matrix(addMatrix(b));
+  }
+
+  public Matrix additionMatrix (int[][] b) {
+    return new Matrix(addArray(b));
+  }
+
+  // Subtracting Matrices
+  private int[][] subArray (int[][] b) {
+    int rows = getRowCount();
+    int columns = getColumnCount();
+
+    int[][] sub = new int[rows][columns];
+
+    for (int i = 0; i < rows; i++)
+    {
+      for (int j = 0; j < columns; j++)
+      {
+        sub[i][j] = this.matrix[i][j] - b[i][j];
+      }
+    }
+
+    return sub;
+  }
+
+  private int[][] subMatrix (Matrix b) {
+    int rows = getRowCount();
+    int columns = getColumnCount();
+
+    int[][] sub = new int[rows][columns];
+
+    for (int i = 0; i < rows; i++)
+    {
+      for (int j = 0; j < columns; j++)
+      {
+        sub[i][j] = this.matrix[i][j] - b.getMatrix()[i][j];
+      }
+    }
+
+    return sub;
+  }
+
+  public int[][] subtractionArray (Matrix b) {
+    return addMatrix(b);
+  }
+
+  public int[][] subtractionArray (int[][] b) {
+    return addArray(b);
+  }
+
+  public Matrix subtractionMatrix (Matrix b) {
+    return new Matrix(addMatrix(b));
+  }
+
+  public Matrix subtractionMatrix (int[][] b) {
+    return new Matrix(addArray(b));
+  }
+
   // Determinants of matrix
   public int getDeterminant() {
     if (getColumnCount() != getRowCount()) {
@@ -133,11 +235,6 @@ public class Matrix {
   private int getDeterminant(int[][] matrix) {
     int rows = getRowCount(matrix);
     int columns = getColumnCount(matrix);
-    
-    if(rows == 1 & columns == 1){
-      return(matrix[0][0]);
-    }
-
     int determinant = 0;
 
     for(int i = 0; i < rows; i++){
@@ -155,7 +252,7 @@ public class Matrix {
       if(i % 2 != 0){
         matrix[0][i] *= -1;
       }
-      determinant += matrix[0][i] * (getDeterminant(innerMatrix));
+      determinant += matrix[0][i] * getDeterminant(innerMatrix);
     }
     return(determinant);
   }
