@@ -4,44 +4,85 @@
  */
 public class Matrix {
   private int[][] matrix;
-  private int[][] transposedMatrix;
 
   public Matrix(int[][] imageMatrix) {
     this.matrix = imageMatrix;
   }
 
   public void printMatrixSpecs () {
-    System.out.println(String.format("Matrix: %s x %s\n", this.matrix.length, this.matrix[0].length));
+    System.out.println(String.format("Matrix: %s x %s\n", getRowCount(), getColumnCount()));
   }
 
-  private void transposeMatrix () {
-    int height = this.matrix.length;
-    int width = this.matrix[0].length;
+  private int getRowCount() {
+    return this.matrix.length;
+  }
 
-    this.transposedMatrix = new int[width][height];
+  private int getColumnCount() {
+    return this.matrix[0].length;
+  }
 
-    if (this.matrix.length > 0) {
-      for (int i = 0; i < width; i++) {
-        for (int j = 0; j < height; j++) {
-          this.transposedMatrix[i][j] = this.matrix[j][i];
-          this.transposedMatrix[i][j] = this.matrix[j][i];
+  private int getRowCount(int[][] matrix) {
+    return matrix.length;
+  }
+
+  private int getColumnCount(int[][] matrix) {
+    return matrix[0].length;
+  }
+
+  public int[][] transposeMatrix () {
+    int rows = getRowCount();
+    int columns = getColumnCount();
+
+    int[][] transposedMatrix = new int[columns][rows];
+
+    if (rows > 0) {
+      for (int i = 0; i < columns; i++) {
+        for (int j = 0; j < rows; j++) {
+          transposedMatrix[i][j] = this.matrix[j][i];
         }
       }
     }
+
+    return transposedMatrix;
   }
 
-  public int[][] getTransposedMatrix () {
-    transposeMatrix();
-    return this.transposedMatrix;
+  public int[][] multiply (int[][] multiplicand) {
+    int multiplierRows = getRowCount();
+    int multiplierColumns = getColumnCount();
+
+    int multiplicandRows = getRowCount(multiplicand);
+    int multiplicandColumns = getColumnCount(multiplicand);
+
+    if (multiplierColumns != multiplicandRows) {
+      System.out.println("The Matrices are not compatible");
+      return null;
+    }
+
+    int[][] product = new int[multiplierRows][multiplicandColumns];
+
+    for (int i = 0; i < multiplierRows; i++) {
+      for (int j = 0; j < multiplicandColumns; j++) {
+        for (int k = 0; k < multiplierColumns; k++) {
+          product[i][j] += matrix[i][k] * multiplicand[k][j];
+        }
+      }
+    }
+
+    return product;
   }
 
   public int[][] getMatrix () {
     return this.matrix;
   }
 
+  public void setMatrix (int[][] newMatrix) {
+    this.matrix = newMatrix;
+  }
+
   public void printMatrix () {
+    int columns = getColumnCount();
     for (int[] aMatrix : this.matrix) {
-      for (int j = 0; j < this.matrix[0].length; j++) {
+      for (int j = 0; j < columns; j++) {
         String val = aMatrix[j] + " ";
         if (val.length() == 2) {
           val += " ";
