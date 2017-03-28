@@ -1,5 +1,5 @@
 /**
- * Created by jonathankeys on 3/27/17.
+ * Created by jonathankeys on 3/25/17.
  *
  */
 public class Matrix {
@@ -126,34 +126,26 @@ public class Matrix {
   private int[][] addArray (int[][] b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-
     int[][] sum = new int[rows][columns];
 
-    for (int i = 0; i < rows; i++)
-    {
-      for (int j = 0; j < columns; j++)
-      {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         sum[i][j] = this.matrix[i][j] + b[i][j];
       }
     }
-
     return sum;
   }
 
   private int[][] addMatrix (Matrix b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-
     int[][] sum = new int[rows][columns];
 
-    for (int i = 0; i < rows; i++)
-    {
-      for (int j = 0; j < columns; j++)
-      {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         sum[i][j] = this.matrix[i][j] + b.getMatrix()[i][j];
       }
     }
-
     return sum;
   }
 
@@ -177,34 +169,26 @@ public class Matrix {
   private int[][] subArray (int[][] b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-
     int[][] sub = new int[rows][columns];
 
-    for (int i = 0; i < rows; i++)
-    {
-      for (int j = 0; j < columns; j++)
-      {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         sub[i][j] = this.matrix[i][j] - b[i][j];
       }
     }
-
     return sub;
   }
 
   private int[][] subMatrix (Matrix b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-
     int[][] sub = new int[rows][columns];
 
-    for (int i = 0; i < rows; i++)
-    {
-      for (int j = 0; j < columns; j++)
-      {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         sub[i][j] = this.matrix[i][j] - b.getMatrix()[i][j];
       }
     }
-
     return sub;
   }
 
@@ -264,6 +248,23 @@ public class Matrix {
 
   public void setMatrix (int[][] newMatrix) {
     this.matrix = newMatrix;
+  }
+
+  // Boolean operators
+  private boolean isMultAllowed (Matrix b) {
+    return getColumnCount() == b.getRowCount();
+  }
+
+  private boolean isMultAllowed (int[][] b) {
+    return getColumnCount() == getRowCount(b);
+  }
+
+  private boolean isArithmicAllowed (Matrix b) {
+    return getRowCount() == b.getRowCount() & getColumnCount() == b.getColumnCount();
+  }
+
+  private boolean isArithmicAllowed (int[][] b) {
+    return getRowCount() == getRowCount(b) & getColumnCount() == getColumnCount(b);
   }
 
   //Print matrix
