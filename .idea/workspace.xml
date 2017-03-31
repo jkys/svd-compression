@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="999c63fd-3d7b-4118-a2f9-71ec052718f1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PolynomialCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project_compression/Matrix.class" afterPath="$PROJECT_DIR$/out/production/project_compression/Matrix.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/project_compression/Runner.class" afterPath="$PROJECT_DIR$/out/production/project_compression/Runner.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MATRIX.java" afterPath="$PROJECT_DIR$/src/MATRIX.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PolynomialCreator.java" afterPath="$PROJECT_DIR$/src/PolynomialCreator.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Runner.java" afterPath="$PROJECT_DIR$/src/Runner.java" />
     </list>
     <ignored path="project_compression.iws" />
@@ -33,8 +29,8 @@
       <file leaf-file-name="Runner.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Runner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="120" column="3" selection-start-line="120" selection-start-column="3" selection-end-line="120" selection-end-column="3" />
+            <state relative-caret-position="-1345">
+              <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,15 +41,13 @@
       <file leaf-file-name="PolynomialCreator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PolynomialCreator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding>
-                <element signature="e#101#102#0" expanded="true" />
-                <element signature="e#127#128#0" expanded="true" />
-                <element signature="e#558#559#0" expanded="true" />
-                <element signature="e#594#595#0" expanded="true" />
-                <element signature="e#626#627#0" expanded="true" />
-                <element signature="e#652#653#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#multi#0;class#PolynomialCreator#0" expanded="false" />
+                <element signature="method#getRoots#0;class#PolynomialCreator#0" expanded="false" />
+                <element signature="method#getTruePoly#0;class#PolynomialCreator#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -74,56 +68,26 @@
       <file leaf-file-name="Matrix.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Matrix.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-255">
-              <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+            <state relative-caret-position="825">
+              <caret line="168" column="45" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
               <folding>
-                <element signature="e#159#160#0" expanded="true" />
-                <element signature="e#194#195#0" expanded="true" />
-                <element signature="e#260#261#0" expanded="true" />
-                <element signature="e#295#296#0" expanded="true" />
-                <element signature="e#329#330#0" expanded="true" />
-                <element signature="e#367#368#0" expanded="true" />
-                <element signature="e#415#416#0" expanded="true" />
-                <element signature="e#445#446#0" expanded="true" />
-                <element signature="e#496#497#0" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#594#595#0" expanded="true" />
-                <element signature="e#622#623#0" expanded="true" />
-                <element signature="e#660#661#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#2935#2936#0" expanded="true" />
-                <element signature="e#2985#2986#0" expanded="true" />
+                <element signature="method#transpose#0;class#Matrix#0" expanded="false" />
+                <element signature="method#multiplicationArray#0;class#Matrix#0" expanded="false" />
+                <element signature="method#multiplicationMatrix#0;class#Matrix#0" expanded="false" />
                 <element signature="e#3044#3045#0" expanded="true" />
                 <element signature="e#3095#3096#0" expanded="true" />
-                <element signature="e#3155#3156#0" expanded="true" />
-                <element signature="e#3217#3218#0" expanded="true" />
-                <element signature="e#3273#3274#0" expanded="true" />
-                <element signature="e#3336#3337#0" expanded="true" />
-                <element signature="e#4064#4065#0" expanded="true" />
-                <element signature="e#4093#4094#0" expanded="true" />
-                <element signature="e#4145#4146#0" expanded="true" />
-                <element signature="e#4173#4174#0" expanded="true" />
-                <element signature="e#4218#4219#0" expanded="true" />
-                <element signature="e#4259#4260#0" expanded="true" />
-                <element signature="e#4308#4309#0" expanded="true" />
-                <element signature="e#4348#4349#0" expanded="true" />
-                <element signature="e#5084#5085#0" expanded="true" />
-                <element signature="e#5113#5114#0" expanded="true" />
-                <element signature="e#5168#5169#0" expanded="true" />
-                <element signature="e#5196#5197#0" expanded="true" />
-                <element signature="e#5244#5245#0" expanded="true" />
-                <element signature="e#5285#5286#0" expanded="true" />
-                <element signature="e#5337#5338#0" expanded="true" />
-                <element signature="e#5377#5378#0" expanded="true" />
+                <element signature="method#addArray#0;class#Matrix#0" expanded="false" />
+                <element signature="method#addMatrix#0;class#Matrix#0" expanded="false" />
+                <element signature="method#subArray#0;class#Matrix#0" expanded="false" />
+                <element signature="method#subMatrix#0;class#Matrix#0" expanded="false" />
+                <element signature="method#getDeterminant#0;class#Matrix#0" expanded="false" />
+                <element signature="method#getDeterminant#1;class#Matrix#0" expanded="false" />
                 <element signature="method#getDiagonal#0;class#Matrix#0" expanded="false" />
-                <element signature="e#6722#6723#0" expanded="true" />
-                <element signature="e#6750#6751#0" expanded="true" />
-                <element signature="e#6800#6801#0" expanded="true" />
-                <element signature="e#6833#6834#0" expanded="true" />
-                <element signature="e#6911#6912#0" expanded="true" />
-                <element signature="e#6963#6964#0" expanded="true" />
-                <element signature="e#7022#7023#0" expanded="true" />
-                <element signature="e#7073#7074#0" expanded="true" />
+                <element signature="method#isArithmeticAllowed#0;class#Matrix#0" expanded="false" />
+                <element signature="method#isArithmeticAllowed#1;class#Matrix#0" expanded="false" />
+                <element signature="method#printMatrix#0;class#Matrix#0" expanded="false" />
+                <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
+                <element signature="e#7878#7919#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -745,12 +709,12 @@
       <workItem from="1490627596904" duration="14895000" />
       <workItem from="1490799514114" duration="8299000" />
       <workItem from="1490971199087" duration="1454000" />
-      <workItem from="1490979240123" duration="3536000" />
+      <workItem from="1490979240123" duration="4308000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28184000" />
+    <option name="totallyTimeSpent" value="28956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -764,7 +728,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33835617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33835617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -823,7 +787,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -847,12 +811,10 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#101#102#0" expanded="true" />
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#558#559#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
-            <element signature="e#652#653#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#multi#0;class#PolynomialCreator#0" expanded="false" />
+            <element signature="method#getRoots#0;class#PolynomialCreator#0" expanded="false" />
+            <element signature="method#getTruePoly#0;class#PolynomialCreator#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -872,53 +834,23 @@
         <state relative-caret-position="465">
           <caret line="108" column="4" selection-start-line="108" selection-start-column="4" selection-end-line="108" selection-end-column="4" />
           <folding>
-            <element signature="e#159#160#0" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#2935#2936#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
+            <element signature="method#transpose#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multiplicationArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multiplicationMatrix#0;class#Matrix#0" expanded="false" />
             <element signature="e#3044#3045#0" expanded="true" />
             <element signature="e#3095#3096#0" expanded="true" />
-            <element signature="e#3155#3156#0" expanded="true" />
-            <element signature="e#3217#3218#0" expanded="true" />
-            <element signature="e#3273#3274#0" expanded="true" />
-            <element signature="e#3336#3337#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
-            <element signature="e#4093#4094#0" expanded="true" />
-            <element signature="e#4145#4146#0" expanded="true" />
-            <element signature="e#4173#4174#0" expanded="true" />
-            <element signature="e#4218#4219#0" expanded="true" />
-            <element signature="e#4259#4260#0" expanded="true" />
-            <element signature="e#4308#4309#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#5084#5085#0" expanded="true" />
-            <element signature="e#5113#5114#0" expanded="true" />
-            <element signature="e#5168#5169#0" expanded="true" />
-            <element signature="e#5196#5197#0" expanded="true" />
-            <element signature="e#5244#5245#0" expanded="true" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5337#5338#0" expanded="true" />
-            <element signature="e#5377#5378#0" expanded="true" />
+            <element signature="method#addArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#addMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#subArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#subMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#1;class#Matrix#0" expanded="false" />
             <element signature="method#getDiagonal#0;class#Matrix#0" expanded="false" />
-            <element signature="e#6722#6723#0" expanded="true" />
-            <element signature="e#6750#6751#0" expanded="true" />
-            <element signature="e#6800#6801#0" expanded="true" />
-            <element signature="e#6833#6834#0" expanded="true" />
-            <element signature="e#6911#6912#0" expanded="true" />
-            <element signature="e#6963#6964#0" expanded="true" />
-            <element signature="e#7022#7023#0" expanded="true" />
-            <element signature="e#7073#7074#0" expanded="true" />
+            <element signature="method#isArithmeticAllowed#0;class#Matrix#0" expanded="false" />
+            <element signature="method#isArithmeticAllowed#1;class#Matrix#0" expanded="false" />
+            <element signature="method#printMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
+            <element signature="e#7878#7919#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -948,53 +880,23 @@
         <state relative-caret-position="1095">
           <caret line="258" column="22" selection-start-line="258" selection-start-column="22" selection-end-line="258" selection-end-column="22" />
           <folding>
-            <element signature="e#159#160#0" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#2935#2936#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
+            <element signature="method#transpose#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multiplicationArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multiplicationMatrix#0;class#Matrix#0" expanded="false" />
             <element signature="e#3044#3045#0" expanded="true" />
             <element signature="e#3095#3096#0" expanded="true" />
-            <element signature="e#3155#3156#0" expanded="true" />
-            <element signature="e#3217#3218#0" expanded="true" />
-            <element signature="e#3273#3274#0" expanded="true" />
-            <element signature="e#3336#3337#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
-            <element signature="e#4093#4094#0" expanded="true" />
-            <element signature="e#4145#4146#0" expanded="true" />
-            <element signature="e#4173#4174#0" expanded="true" />
-            <element signature="e#4218#4219#0" expanded="true" />
-            <element signature="e#4259#4260#0" expanded="true" />
-            <element signature="e#4308#4309#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#5084#5085#0" expanded="true" />
-            <element signature="e#5113#5114#0" expanded="true" />
-            <element signature="e#5168#5169#0" expanded="true" />
-            <element signature="e#5196#5197#0" expanded="true" />
-            <element signature="e#5244#5245#0" expanded="true" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5337#5338#0" expanded="true" />
-            <element signature="e#5377#5378#0" expanded="true" />
+            <element signature="method#addArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#addMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#subArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#subMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#1;class#Matrix#0" expanded="false" />
             <element signature="method#getDiagonal#0;class#Matrix#0" expanded="false" />
-            <element signature="e#6722#6723#0" expanded="true" />
-            <element signature="e#6750#6751#0" expanded="true" />
-            <element signature="e#6800#6801#0" expanded="true" />
-            <element signature="e#6833#6834#0" expanded="true" />
-            <element signature="e#6911#6912#0" expanded="true" />
-            <element signature="e#6963#6964#0" expanded="true" />
-            <element signature="e#7022#7023#0" expanded="true" />
-            <element signature="e#7073#7074#0" expanded="true" />
+            <element signature="method#isArithmeticAllowed#0;class#Matrix#0" expanded="false" />
+            <element signature="method#isArithmeticAllowed#1;class#Matrix#0" expanded="false" />
+            <element signature="method#printMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
+            <element signature="e#7878#7919#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1052,79 +954,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Matrix.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-255">
-          <caret line="299" column="0" selection-start-line="299" selection-start-column="0" selection-end-line="299" selection-end-column="0" />
+        <state relative-caret-position="825">
+          <caret line="168" column="45" selection-start-line="168" selection-start-column="45" selection-end-line="168" selection-end-column="45" />
           <folding>
-            <element signature="e#159#160#0" expanded="true" />
-            <element signature="e#194#195#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#329#330#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#622#623#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#700#701#0" expanded="true" />
-            <element signature="e#2935#2936#0" expanded="true" />
-            <element signature="e#2985#2986#0" expanded="true" />
+            <element signature="method#transpose#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multiplicationArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#multiplicationMatrix#0;class#Matrix#0" expanded="false" />
             <element signature="e#3044#3045#0" expanded="true" />
             <element signature="e#3095#3096#0" expanded="true" />
-            <element signature="e#3155#3156#0" expanded="true" />
-            <element signature="e#3217#3218#0" expanded="true" />
-            <element signature="e#3273#3274#0" expanded="true" />
-            <element signature="e#3336#3337#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
-            <element signature="e#4093#4094#0" expanded="true" />
-            <element signature="e#4145#4146#0" expanded="true" />
-            <element signature="e#4173#4174#0" expanded="true" />
-            <element signature="e#4218#4219#0" expanded="true" />
-            <element signature="e#4259#4260#0" expanded="true" />
-            <element signature="e#4308#4309#0" expanded="true" />
-            <element signature="e#4348#4349#0" expanded="true" />
-            <element signature="e#5084#5085#0" expanded="true" />
-            <element signature="e#5113#5114#0" expanded="true" />
-            <element signature="e#5168#5169#0" expanded="true" />
-            <element signature="e#5196#5197#0" expanded="true" />
-            <element signature="e#5244#5245#0" expanded="true" />
-            <element signature="e#5285#5286#0" expanded="true" />
-            <element signature="e#5337#5338#0" expanded="true" />
-            <element signature="e#5377#5378#0" expanded="true" />
+            <element signature="method#addArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#addMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#subArray#0;class#Matrix#0" expanded="false" />
+            <element signature="method#subMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#0;class#Matrix#0" expanded="false" />
+            <element signature="method#getDeterminant#1;class#Matrix#0" expanded="false" />
             <element signature="method#getDiagonal#0;class#Matrix#0" expanded="false" />
-            <element signature="e#6722#6723#0" expanded="true" />
-            <element signature="e#6750#6751#0" expanded="true" />
-            <element signature="e#6800#6801#0" expanded="true" />
-            <element signature="e#6833#6834#0" expanded="true" />
-            <element signature="e#6911#6912#0" expanded="true" />
-            <element signature="e#6963#6964#0" expanded="true" />
-            <element signature="e#7022#7023#0" expanded="true" />
-            <element signature="e#7073#7074#0" expanded="true" />
+            <element signature="method#isArithmeticAllowed#0;class#Matrix#0" expanded="false" />
+            <element signature="method#isArithmeticAllowed#1;class#Matrix#0" expanded="false" />
+            <element signature="method#printMatrix#0;class#Matrix#0" expanded="false" />
+            <element signature="method#printMatrixSpecs#0;class#Matrix#0" expanded="false" />
+            <element signature="e#7878#7919#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PolynomialCreator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="210">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <element signature="e#101#102#0" expanded="true" />
-            <element signature="e#127#128#0" expanded="true" />
-            <element signature="e#558#559#0" expanded="true" />
-            <element signature="e#594#595#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
-            <element signature="e#652#653#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#multi#0;class#PolynomialCreator#0" expanded="false" />
+            <element signature="method#getRoots#0;class#PolynomialCreator#0" expanded="false" />
+            <element signature="method#getTruePoly#0;class#PolynomialCreator#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Runner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="120" column="3" selection-start-line="120" selection-start-column="3" selection-end-line="120" selection-end-column="3" />
+        <state relative-caret-position="-1345">
+          <caret line="3" column="59" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

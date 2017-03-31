@@ -2,10 +2,6 @@ import java.io.IOException;
 import java.util.Stack;
 import org.apache.commons.math.ConvergenceException;
 import org.apache.commons.math.FunctionEvaluationException;
-import org.apache.commons.math.analysis.polynomials.PolynomialFunction;
-import org.apache.commons.math.analysis.solvers.LaguerreSolver;
-import org.apache.commons.math.complex.Complex;
-
 
 /**
  * Created by jonathankeys on 3/25/17
@@ -66,14 +62,15 @@ public class Runner {
     double det = square.getDeterminant();
     double[] diagonal = square.getDiagonal();
 
-    System.out.print("Matrix Diagonal: ( ");
+    System.out.print("Matrix Diagonal: ");
     Stack<double[]> test = new Stack<>();
     for (double val: diagonal) {
      test.push(new double[]{val, -1});
     }
 
 
-    double[] finalthing = new double[1];
+    double[] roots = new double[1];
+    double[] poly = new double[1];
 
 
     while (!test.empty()) {
@@ -81,37 +78,23 @@ public class Runner {
       if (!test.empty()) {
         PolynomialCreator eh = blah.multiply(new PolynomialCreator(test.pop()));
         test.push(eh.getPoly());
+      } else {
+        poly = blah.getTruePoly(det);
+        roots = new PolynomialCreator(poly).getRoots();
       }
-
-      finalthing = blah.getPoly();
-    }
-
-    finalthing[0] = det;
-    
-
-    for (double val:finalthing) {
-      System.out.print(val + " ");
-    }
-
-    System.out.println(")\nDeterminant: " + det);
-
-
-
-    PolynomialFunction x = new PolynomialFunction(finalthing);
-    Complex[] root = new LaguerreSolver().solveAll(finalthing, 0);
-
-    for (Complex t:root) {
-      System.out.println(t.getReal());
     }
 
 
-//    List<Integer> eVector = createEVector(diagonal, det);
+    for (double val:poly) {
+      System.out.print(val + "\t");
+    }
 
-//    for (int val: eVector) {
-//      System.out.println(String.format("PolynomialCreator Factor"
-//          + " is %s",val));
-//    }
+    System.out.println("\nDeterminant: " + det);
 
+    System.out.print("Eigen Values: ");
+    for (double val:roots) {
+      System.out.print(val + "\t");
+    }
 
     // Do actions on image and set to new file "imageUpdated"
 //    imageMatrix = matrix.getTransposedMatrix();
