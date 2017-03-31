@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.util.List;
 import java.util.Stack;
 import org.apache.commons.math.ConvergenceException;
 import org.apache.commons.math.FunctionEvaluationException;
@@ -16,29 +15,16 @@ public class Runner {
   public static void main (String[] args) throws IOException, FunctionEvaluationException, ConvergenceException {
     //Create matrix from image
 //    Image image = new Image("src/images/image0.jpg");
-//    int[][] imageMatrix = image.getImageMatrix();
-
-//    double[] y = {1600, -100, 1};
-//
-//    PolynomialFunction x = new PolynomialFunction(y);
-//    Complex[] root = new LaguerreSolver().solveAll(y, 0);
-//
-////    double[] a = x.getCoefficients();
-////    int c = x.degree();
-////    System.out.println(c);
-//
-//    for (Complex t:root) {
-//      System.out.println(t.getReal());
-//    }
+//    double[][] imageMatrix = image.getImageMatrix();
 
 
 
     // Example Matrices
-    int[][] twoByTwo = {{5, 5}, {-1, 7}};
-    int[][] twoByThree = {{1, 2, 3}, {4, 5, 6}};
-    int[][] threeByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    int[][] fourByFour = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-    int[][] sixByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}, {13, 14, 15}, {16, 17, 18}};
+    double[][] twoByTwo = {{5, 5}, {-1, 7}};
+    double[][] twoByThree = {{1, 2, 3}, {4, 5, 6}};
+    double[][] threeByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    double[][] fourByFour = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+    double[][] sixByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}, {13, 14, 15}, {16, 17, 18}};
     /**
      * RealMatrix S=svd.get(0);
      RealMatrix U=svd.get(1);
@@ -64,33 +50,65 @@ public class Runner {
      */
 
     // Push Matrices to stack
-    Stack<int[][]> matrices = new Stack<>();
+    Stack<double[][]> matrices = new Stack<>();
     matrices.push(twoByThree);
     matrices.push(threeByThree);
     matrices.push(fourByFour);
     matrices.push(sixByThree);
 
-    Matrix matrix = new Matrix(threeByThree);
+    Matrix matrix = new Matrix(twoByTwo);
     Matrix transpose = matrix.transposeMatrix();
     Matrix square = transpose.multiplyMatrix(matrix);
 
     matrix.printMatrix();
     transpose.printMatrix();
     square.printMatrix();
-    int det = square.getDeterminant();
-    int[] diagonal = square.getDiagonal();
+    double det = square.getDeterminant();
+    double[] diagonal = square.getDiagonal();
 
     System.out.print("Matrix Diagonal: ( ");
-    for (int val: diagonal) {
-     System.out.print(val + " ");
+    Stack<double[]> test = new Stack<>();
+    for (double val: diagonal) {
+     test.push(new double[]{val, -1});
+    }
+
+
+    double[] finalthing = new double[1];
+
+
+    while (!test.empty()) {
+      PolynomialCreator blah = new PolynomialCreator(test.pop());
+      if (!test.empty()) {
+        PolynomialCreator eh = blah.multiply(new PolynomialCreator(test.pop()));
+        test.push(eh.getPoly());
+      }
+
+      finalthing = blah.getPoly();
+    }
+
+    finalthing[0] = det;
+    
+
+    for (double val:finalthing) {
+      System.out.print(val + " ");
     }
 
     System.out.println(")\nDeterminant: " + det);
 
+
+
+    PolynomialFunction x = new PolynomialFunction(finalthing);
+    Complex[] root = new LaguerreSolver().solveAll(finalthing, 0);
+
+    for (Complex t:root) {
+      System.out.println(t.getReal());
+    }
+
+
 //    List<Integer> eVector = createEVector(diagonal, det);
 
 //    for (int val: eVector) {
-//      System.out.println(String.format("Polynomial Factor"
+//      System.out.println(String.format("PolynomialCreator Factor"
 //          + " is %s",val));
 //    }
 
@@ -102,39 +120,7 @@ public class Runner {
 //    ImageIO.write(image.getImage(), "jpg", new File("src/images/imageUpdated.jpg"));
   }
 
-  private static Stack<int[]> poly (Stack<int[]> lah) {
-    int[] a = lah.pop();
-    int[] b = lah.pop();
-
-    int[] ans = new int[a.length + 1];
-
-    for (int i = 0; i < ans.length; i++) {
-      ans[i] = a[i] * b[i];
-    }
-
-    Stack<int[]> test = new Stack<>();
-    test.push(ans);
-    test.push(lah.pop());
-
-
-    return test;
-  }
-
-  private static Stack<int[]> createEVector (int[] diagonal,  int det) {
-    int length = diagonal.length;
-    Stack<int[]> eVector = new Stack<>();
-
-    int[] a = new int[]{66, -1};
-    int[] b = new int[]{93, -1};
-    int[] c = new int[]{126, -1};
-
-    eVector.push(a);
-    eVector.push(b);
-    eVector.push(c);
-    return eVector;
-  }
-
-  private static void transpose (Stack<int[][]> matrices) {
+  private static void transpose (Stack<double[][]> matrices) {
     // While stack is not empty, pop value and print matrix and its transpose
     while (!matrices.empty()) {
       Matrix matrix = new Matrix(matrices.pop());

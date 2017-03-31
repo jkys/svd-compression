@@ -3,10 +3,10 @@
  *
  */
 public class Matrix {
-  private int[][] matrix;
+  private double[][] matrix;
 
   // Constructor
-  public Matrix(int[][] imageMatrix) {
+  public Matrix(double[][] imageMatrix) {
     this.matrix = imageMatrix;
   }
 
@@ -19,16 +19,16 @@ public class Matrix {
     return this.matrix[0].length;
   }
 
-  private int getRowCount(int[][] matrix) {
+  private int getRowCount(double[][] matrix) {
     return matrix.length;
   }
 
-  private int getColumnCount(int[][] matrix) {
+  private int getColumnCount(double[][] matrix) {
     return matrix[0].length;
   }
 
   // Transposing Matrix
-  public int[][] transposeArray () {
+  public double[][] transposeArray () {
     return transpose();
   }
 
@@ -36,11 +36,11 @@ public class Matrix {
     return new Matrix(transpose());
   }
 
-  private int[][] transpose () {
+  private double[][] transpose () {
     int rows = getRowCount();
     int columns = getColumnCount();
 
-    int[][] transposedMatrix = new int[columns][rows];
+    double[][] transposedMatrix = new double[columns][rows];
 
     if (rows > 0) {
       for (int i = 0; i < columns; i++) {
@@ -54,7 +54,7 @@ public class Matrix {
   }
 
   // Multiplying Matrices
-  private int[][] multiplicationArray(int[][] multiplicand) {
+  private double[][] multiplicationArray(double[][] multiplicand) {
     int multiplierRows = getRowCount();
     int multiplierColumns = getColumnCount();
 
@@ -67,7 +67,7 @@ public class Matrix {
           multiplierColumns, multiplicandRows, multiplicandColumns));
     }
 
-    int[][] product = new int[multiplierRows][multiplicandColumns];
+    double[][] product = new double[multiplierRows][multiplicandColumns];
 
     for (int i = 0; i < multiplierRows; i++) {
       for (int j = 0; j < multiplicandColumns; j++) {
@@ -80,7 +80,7 @@ public class Matrix {
     return product;
   }
 
-  private int[][] multiplicationMatrix(Matrix multiplicand) {
+  private double[][] multiplicationMatrix(Matrix multiplicand) {
     int multiplierRows = getRowCount();
     int multiplierColumns = getColumnCount();
 
@@ -93,7 +93,7 @@ public class Matrix {
           multiplierColumns, multiplicandRows, multiplicandColumns));
     }
 
-    int[][] product = new int[multiplierRows][multiplicandColumns];
+    double[][] product = new double[multiplierRows][multiplicandColumns];
 
     for (int i = 0; i < multiplierRows; i++) {
       for (int j = 0; j < multiplicandColumns; j++) {
@@ -106,15 +106,15 @@ public class Matrix {
     return product;
   }
 
-  public int[][] multiplyArray (int[][] multiplicand) {
+  public double[][] multiplyArray (double[][] multiplicand) {
     return multiplicationArray(multiplicand);
   }
 
-  public int[][] multiplyArray (Matrix multiplicand) {
+  public double[][] multiplyArray (Matrix multiplicand) {
     return multiplicationMatrix(multiplicand);
   }
 
-  public Matrix multiplyMatrix (int[][] multiplicand) {
+  public Matrix multiplyMatrix (double[][] multiplicand) {
     return new Matrix(multiplicationArray(multiplicand));
   }
 
@@ -123,10 +123,10 @@ public class Matrix {
   }
 
   // Adding Matrices
-  private int[][] addArray (int[][] b) {
+  private double[][] addArray (double[][] b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-    int[][] sum = new int[rows][columns];
+    double[][] sum = new double[rows][columns];
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
@@ -136,10 +136,10 @@ public class Matrix {
     return sum;
   }
 
-  private int[][] addMatrix (Matrix b) {
+  private double[][] addMatrix (Matrix b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-    int[][] sum = new int[rows][columns];
+    double[][] sum = new double[rows][columns];
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
@@ -149,11 +149,11 @@ public class Matrix {
     return sum;
   }
 
-  public int[][] additionArray (Matrix b) {
+  public double[][] additionArray (Matrix b) {
     return addMatrix(b);
   }
 
-  public int[][] additionArray (int[][] b) {
+  public double[][] additionArray (double[][] b) {
     return addArray(b);
   }
 
@@ -161,15 +161,15 @@ public class Matrix {
     return new Matrix(addMatrix(b));
   }
 
-  public Matrix additionMatrix (int[][] b) {
+  public Matrix additionMatrix (double[][] b) {
     return new Matrix(addArray(b));
   }
 
   // Subtracting Matrices
-  private int[][] subArray (int[][] b) {
+  private double[][] subArray (double[][] b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-    int[][] sub = new int[rows][columns];
+    double[][] sub = new double[rows][columns];
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
@@ -179,10 +179,10 @@ public class Matrix {
     return sub;
   }
 
-  private int[][] subMatrix (Matrix b) {
+  private double[][] subMatrix (Matrix b) {
     int rows = getRowCount();
     int columns = getColumnCount();
-    int[][] sub = new int[rows][columns];
+    double[][] sub = new double[rows][columns];
 
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < columns; j++) {
@@ -192,11 +192,11 @@ public class Matrix {
     return sub;
   }
 
-  public int[][] subtractionArray (Matrix b) {
+  public double[][] subtractionArray (Matrix b) {
     return subMatrix(b);
   }
 
-  public int[][] subtractionArray (int[][] b) {
+  public double[][] subtractionArray (double[][] b) {
     return subArray(b);
   }
 
@@ -204,29 +204,29 @@ public class Matrix {
     return new Matrix(subMatrix(b));
   }
 
-  public Matrix subtractionMatrix (int[][] b) {
+  public Matrix subtractionMatrix (double[][] b) {
     return new Matrix(subArray(b));
   }
 
   // Determinants of matrix
-  public int getDeterminant() {
+  public double getDeterminant() {
     if (getColumnCount() != getRowCount()) {
       throw new Error(String.format("Matrix needs to be a square, found %s x %s.", getRowCount(), getColumnCount()));
     }
     return getDeterminant(this.matrix);
   }
 
-  private int getDeterminant(int[][] matrix) {
+  private double getDeterminant(double[][] matrix) {
     int rows = getRowCount(matrix);
     int columns = getColumnCount(matrix);
-    int determinant = 0;
+    double determinant = 0;
 
     if(rows == 1 & columns == 1){
       return matrix[0][0];
     }
 
     for(int i = 0; i < rows; i++){
-      int[][] innerMatrix = new int[rows - 1][columns - 1];
+      double[][] innerMatrix = new double[rows - 1][columns - 1];
       for(int j = 1; j < rows; j++){
         for(int k = 0; k < columns; k++){
           if(k < i){
@@ -246,9 +246,9 @@ public class Matrix {
   }
 
   // Get diagonal of matrix
-  public int[] getDiagonal() {
+  public double[] getDiagonal() {
     int height = getRowCount();
-    int[] diagonal = new int[height];
+    double[] diagonal = new double[height];
     for (int i = 0; i < height; i++) {
       diagonal[i] = this.matrix[i][i];
     }
@@ -257,11 +257,11 @@ public class Matrix {
   }
 
   // Getter and Setter
-  public int[][] getMatrix () {
+  public double[][] getMatrix () {
     return this.matrix;
   }
 
-  public void setMatrix (int[][] newMatrix) {
+  public void setMatrix (double[][] newMatrix) {
     this.matrix = newMatrix;
   }
 
@@ -270,7 +270,7 @@ public class Matrix {
     return getColumnCount() == b.getRowCount();
   }
 
-  private boolean isMultiplicationAllowed(int[][] b) {
+  private boolean isMultiplicationAllowed(double[][] b) {
     return getColumnCount() == getRowCount(b);
   }
 
@@ -278,14 +278,14 @@ public class Matrix {
     return getRowCount() == b.getRowCount() & getColumnCount() == b.getColumnCount();
   }
 
-  private boolean isArithmeticAllowed(int[][] b) {
+  private boolean isArithmeticAllowed(double[][] b) {
     return getRowCount() == getRowCount(b) & getColumnCount() == getColumnCount(b);
   }
 
   //Print matrix
   public void printMatrix () {
     int columns = getColumnCount();
-    for (int[] aMatrix : this.matrix) {
+    for (double[] aMatrix : this.matrix) {
       for (int j = 0; j < columns; j++) {
         String val = aMatrix[j] + " ";
         if (val.length() == 2) {
