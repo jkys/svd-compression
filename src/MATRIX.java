@@ -6,8 +6,16 @@ public class Matrix {
   private double[][] matrix;
 
   // Constructor
-  public Matrix(double[][] imageMatrix) {
-    this.matrix = imageMatrix;
+  public Matrix(double[][] matrix) {
+    this.matrix = matrix;
+  }
+
+  public Matrix(Matrix matrix) {
+    this.matrix = matrix.getMatrix();
+  }
+
+  public Matrix () {
+
   }
 
   // Matrix Row and Column Counter
@@ -213,16 +221,18 @@ public class Matrix {
     if (getColumnCount() != getRowCount()) {
       throw new Error(String.format("Matrix needs to be a square, found %s x %s.", getRowCount(), getColumnCount()));
     }
-    return getDeterminant(this.matrix);
+
+    double[][] newMatrix = this.matrix;
+    return getDeterminant(newMatrix);
   }
 
-  private double getDeterminant(double[][] matrix) {
-    int rows = getRowCount(matrix);
-    int columns = getColumnCount(matrix);
+  private double getDeterminant(double[][] matrixDet) {
+    int rows = getRowCount(matrixDet);
+    int columns = getColumnCount(matrixDet);
     double determinant = 0;
 
     if(rows == 1 & columns == 1){
-      return matrix[0][0];
+      return matrixDet[0][0];
     }
 
     for(int i = 0; i < rows; i++){
@@ -230,19 +240,28 @@ public class Matrix {
       for(int j = 1; j < rows; j++){
         for(int k = 0; k < columns; k++){
           if(k < i){
-            innerMatrix[j - 1][k] = matrix[j][k];
+            innerMatrix[j - 1][k] = matrixDet[j][k];
           }
           else if(k > i){
-            innerMatrix[j - 1][k - 1] = matrix[j][k];
+            innerMatrix[j - 1][k - 1] = matrixDet[j][k];
           }
         }
       }
+
+      boolean needsUndo = false;
       if(i % 2 != 0){
-        matrix[0][i] *= -1;
+        matrixDet[0][i] *= -1;
+        needsUndo = true;
       }
-      determinant += matrix[0][i] * getDeterminant(innerMatrix);
+
+      determinant += matrixDet[0][i] * getDeterminant(innerMatrix);
+
+      if (needsUndo) {
+        matrixDet[0][i] *= -1;
+      }
     }
-    return(determinant);
+
+    return determinant;
   }
 
   // Get diagonal of matrix
@@ -300,6 +319,22 @@ public class Matrix {
 
   public void printMatrixSpecs () {
     System.out.println(String.format("Matrix: %s x %s\n", getRowCount(), getColumnCount()));
+  }
+
+  public void createIdentityFromVector (double vector, int size) {
+    double[][] identity = new double[size][size];
+
+    for (int i = 0; i < size; i++) {
+      for (int j = 0; j < size; j++) {
+        if (i == j){
+          identity[i][j] = vector;
+        } else {
+          identity[i][j] = 0;
+        }
+      }
+    }
+
+    this.matrix = identity;
   }
 
 //  public void scaleMatrix (int scale) {

@@ -59,6 +59,7 @@ public class Runner {
     matrix.printMatrix();
     transpose.printMatrix();
     square.printMatrix();
+
     double det = square.getDeterminant();
     double[] diagonal = square.getDiagonal();
 
@@ -67,6 +68,7 @@ public class Runner {
     for (double val: diagonal) {
      test.push(new double[]{val, -1});
     }
+
 
 
     double[] roots = new double[1];
@@ -94,6 +96,27 @@ public class Runner {
     System.out.print("Eigen Values: ");
     for (double val:roots) {
       System.out.print(val + "\t");
+    }
+
+    Stack<Matrix> idens = new Stack<>();
+
+    for (double root: roots) {
+      Matrix iden = new Matrix();
+      iden.createIdentityFromVector(root, roots.length);
+
+      idens.push(iden);
+    }
+
+    Stack<Matrix> newIdens = new Stack<>();
+
+    while (!idens.empty()) {
+      newIdens.push(new Matrix(square.subtractionMatrix(idens.pop())));
+    }
+
+    System.out.println();
+
+    while (!newIdens.empty()) {
+      newIdens.pop().printMatrix();
     }
 
     // Do actions on image and set to new file "imageUpdated"
