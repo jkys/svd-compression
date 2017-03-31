@@ -54,7 +54,7 @@ public class Matrix {
   }
 
   // Multiplying Matrices
-  private int[][] multArray (int[][] multiplicand) {
+  private int[][] multiplicationArray(int[][] multiplicand) {
     int multiplierRows = getRowCount();
     int multiplierColumns = getColumnCount();
 
@@ -80,7 +80,7 @@ public class Matrix {
     return product;
   }
 
-  private int[][] multMatrix (Matrix multiplicand) {
+  private int[][] multiplicationMatrix(Matrix multiplicand) {
     int multiplierRows = getRowCount();
     int multiplierColumns = getColumnCount();
 
@@ -107,19 +107,19 @@ public class Matrix {
   }
 
   public int[][] multiplyArray (int[][] multiplicand) {
-    return multArray(multiplicand);
+    return multiplicationArray(multiplicand);
   }
 
   public int[][] multiplyArray (Matrix multiplicand) {
-    return multMatrix(multiplicand);
+    return multiplicationMatrix(multiplicand);
   }
 
   public Matrix multiplyMatrix (int[][] multiplicand) {
-    return new Matrix(multArray(multiplicand));
+    return new Matrix(multiplicationArray(multiplicand));
   }
 
   public Matrix multiplyMatrix (Matrix multiplicand) {
-    return new Matrix(multMatrix(multiplicand));
+    return new Matrix(multiplicationMatrix(multiplicand));
   }
 
   // Adding Matrices
@@ -193,19 +193,19 @@ public class Matrix {
   }
 
   public int[][] subtractionArray (Matrix b) {
-    return addMatrix(b);
+    return subMatrix(b);
   }
 
   public int[][] subtractionArray (int[][] b) {
-    return addArray(b);
+    return subArray(b);
   }
 
   public Matrix subtractionMatrix (Matrix b) {
-    return new Matrix(addMatrix(b));
+    return new Matrix(subMatrix(b));
   }
 
   public Matrix subtractionMatrix (int[][] b) {
-    return new Matrix(addArray(b));
+    return new Matrix(subArray(b));
   }
 
   // Determinants of matrix
@@ -220,6 +220,10 @@ public class Matrix {
     int rows = getRowCount(matrix);
     int columns = getColumnCount(matrix);
     int determinant = 0;
+
+    if(rows == 1 & columns == 1){
+      return matrix[0][0];
+    }
 
     for(int i = 0; i < rows; i++){
       int[][] innerMatrix = new int[rows - 1][columns - 1];
@@ -241,6 +245,17 @@ public class Matrix {
     return(determinant);
   }
 
+  // Get diagonal of matrix
+  public int[] getDiagonal() {
+    int height = getRowCount();
+    int[] diagonal = new int[height];
+    for (int i = 0; i < height; i++) {
+      diagonal[i] = this.matrix[i][i];
+    }
+
+    return diagonal;
+  }
+
   // Getter and Setter
   public int[][] getMatrix () {
     return this.matrix;
@@ -251,19 +266,19 @@ public class Matrix {
   }
 
   // Boolean operators
-  private boolean isMultAllowed (Matrix b) {
+  private boolean isMultiplicationAllowed(Matrix b) {
     return getColumnCount() == b.getRowCount();
   }
 
-  private boolean isMultAllowed (int[][] b) {
+  private boolean isMultiplicationAllowed(int[][] b) {
     return getColumnCount() == getRowCount(b);
   }
 
-  private boolean isArithmicAllowed (Matrix b) {
+  private boolean isArithmeticAllowed(Matrix b) {
     return getRowCount() == b.getRowCount() & getColumnCount() == b.getColumnCount();
   }
 
-  private boolean isArithmicAllowed (int[][] b) {
+  private boolean isArithmeticAllowed(int[][] b) {
     return getRowCount() == getRowCount(b) & getColumnCount() == getColumnCount(b);
   }
 
