@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created by jonathankeys on 3/25/17.
  *
@@ -321,7 +323,11 @@ public class Matrix {
     System.out.println(String.format("Matrix: %s x %s\n", getRowCount(), getColumnCount()));
   }
 
-  public void createIdentityFromVector (double vector, int size) {
+  public void createZeroIdentityFromVal(double vector, int size) {
+    eh(vector, size, 0);
+  }
+
+  private void eh (double vector, int size, double val) {
     double[][] identity = new double[size][size];
 
     for (int i = 0; i < size; i++) {
@@ -329,12 +335,67 @@ public class Matrix {
         if (i == j){
           identity[i][j] = vector;
         } else {
-          identity[i][j] = 0;
+          identity[i][j] = val;
         }
       }
     }
 
     this.matrix = identity;
+  }
+
+  public void createIdentityFromVal(double vector, int size) {
+    eh(vector, size, 1);
+  }
+
+  public void createIdentityFromVector(double[] vector) {
+    ehh(vector, 1);
+  }
+
+  public void createZeroIdentityFromVector(double[] vector) {
+    ehh(vector, 0);
+  }
+
+  private void ehh (double[] vector, double val) {
+    int size = vector.length;
+    double[][] identity = new double[size][size];
+
+    for (int i = 0; i < size; i++) {
+      for (int j = 0; j < size; j++) {
+        if (i == j){
+          identity[i][j] = vector[i];
+        } else {
+          identity[i][j] = val;
+        }
+      }
+    }
+    this.matrix = identity;
+  }
+
+  private void idkanymore (Matrix UV) {
+    int columns = UV.getColumnCount();
+    int rows = UV.getRowCount();
+    double[][] u = UV.getMatrix();
+
+    for (int i = 0; i < columns; i++) {
+      double x = 0;
+      for (int j = 0; j < rows; j++) {
+        x += u[j][i] * u[j][i];
+      }
+
+      for (int j = 0; j < rows; j++) {
+        u[j][i] = u[j][i] / Math.sqrt(x);
+      }
+    }
+
+    this.matrix = u;
+  }
+
+  public void createUnitMatrix (Matrix UV) {
+    idkanymore(UV);
+  }
+
+  public void createUnitMatrix (double[][] UV) {
+    idkanymore(new Matrix(UV));
   }
 
 //  public void scaleMatrix (int scale) {

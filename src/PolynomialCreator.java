@@ -11,6 +11,9 @@ public class PolynomialCreator {
     this.poly = poly;
   }
 
+  private void test () {
+  }
+
   private PolynomialCreator multi(PolynomialCreator multiplicand) {
     double[] result = new double[poly.length + multiplicand.poly.length - 1];
 

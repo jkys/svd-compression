@@ -8,5 +8,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="org.apache.commons:commons-math:2.1" level="project" />
+    <orderEntry type="library" name="gov.nist.math:jama:1.0.3" level="project" />
   </component>
 </module>

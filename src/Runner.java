@@ -1,5 +1,8 @@
+import Jama.*;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Stack;
+import java.util.jar.JarEntry;
 import org.apache.commons.math.ConvergenceException;
 import org.apache.commons.math.FunctionEvaluationException;
 
@@ -102,7 +105,7 @@ public class Runner {
 
     for (double root: roots) {
       Matrix iden = new Matrix();
-      iden.createIdentityFromVector(root, roots.length);
+      iden.createZeroIdentityFromVal(root, roots.length);
 
       idens.push(iden);
     }
@@ -110,14 +113,40 @@ public class Runner {
     Stack<Matrix> newIdens = new Stack<>();
 
     while (!idens.empty()) {
-      newIdens.push(new Matrix(square.subtractionMatrix(idens.pop())));
+      Matrix temp = idens.pop();
+      newIdens.push(new Matrix(square.subtractionMatrix(temp)));
     }
 
     System.out.println();
 
+    SVD pppp = new SVD();
+    pppp.createS(roots);
+    Matrix S = new Matrix(pppp.getS());
+
+    Stack<Jama.Matrix> skdjf = new Stack<>();
+
+
+
     while (!newIdens.empty()) {
-      newIdens.pop().printMatrix();
+      skdjf.push(new Jama.Matrix(newIdens.pop().getMatrix()));
     }
+
+    EigenvalueDecomposition party = skdjf.pop().eig();
+    EigenvalueDecomposition party1 = skdjf.pop().eig();
+
+    Jama.Matrix beh = party.getV();
+
+    Matrix V = new Matrix(beh.getArray());
+
+    S.printMatrix();
+    V.printMatrix();
+
+    Matrix U = new Matrix(matrix.multiplyMatrix(V));
+    U.createUnitMatrix(U);
+    U = U.multiplyMatrix(S);
+
+    U.printMatrix();
+
 
     // Do actions on image and set to new file "imageUpdated"
 //    imageMatrix = matrix.getTransposedMatrix();
