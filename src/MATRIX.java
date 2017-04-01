@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -304,19 +305,33 @@ public class Matrix {
   }
 
   //Print matrix
-  public void printMatrix () {
+  public void print (boolean format) {
     int columns = getColumnCount();
     for (double[] aMatrix : this.matrix) {
       for (int j = 0; j < columns; j++) {
-        String val = aMatrix[j] + " ";
-        if (val.length() == 2) {
+        String val;
+        if(format) {
+          val = new DecimalFormat("0.##").format(aMatrix[j]);
+        } else {
+          val = aMatrix[j] + "";
+        }
+        while (val.length() < 6) {
           val += " ";
         }
+
         System.out.print(val + "\t");
       }
       System.out.println();
     }
     System.out.println();
+  }
+
+  public void printMatrix () {
+    print(false);
+  }
+
+  public void printMatrixTrim () {
+    print(true);
   }
 
   public void printMatrixSpecs () {

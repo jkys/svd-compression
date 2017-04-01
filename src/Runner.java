@@ -1,8 +1,6 @@
-import Jama.*;
 import java.io.IOException;
-import java.util.Arrays;
+import java.text.DecimalFormat;
 import java.util.Stack;
-import java.util.jar.JarEntry;
 import org.apache.commons.math.ConvergenceException;
 import org.apache.commons.math.FunctionEvaluationException;
 
@@ -12,18 +10,10 @@ import org.apache.commons.math.FunctionEvaluationException;
  */
 public class Runner {
   public static void main (String[] args) throws IOException, FunctionEvaluationException, ConvergenceException {
-    //Create matrix from image
+//    // Create matrix from image
 //    Image image = new Image("src/images/image0.jpg");
 //    double[][] imageMatrix = image.getImageMatrix();
 
-
-
-    // Example Matrices
-    double[][] twoByTwo = {{5, 5}, {-1, 7}};
-    double[][] twoByThree = {{1, 2, 3}, {4, 5, 6}};
-    double[][] threeByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-    double[][] fourByFour = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
-    double[][] sixByThree = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {10, 11, 12}, {13, 14, 15}, {16, 17, 18}};
     /**
      * RealMatrix S=svd.get(0);
      RealMatrix U=svd.get(1);
@@ -48,110 +38,12 @@ public class Runner {
      return doubleMat;
      */
 
-    // Push Matrices to stack
-    Stack<double[][]> matrices = new Stack<>();
-    matrices.push(twoByThree);
-    matrices.push(threeByThree);
-    matrices.push(fourByFour);
-    matrices.push(sixByThree);
-
-    Matrix matrix = new Matrix(twoByTwo);
-    Matrix transpose = matrix.transposeMatrix();
-    Matrix square = transpose.multiplyMatrix(matrix);
-
-    matrix.printMatrix();
-    transpose.printMatrix();
-    square.printMatrix();
-
-    double det = square.getDeterminant();
-    double[] diagonal = square.getDiagonal();
-
-    System.out.print("Matrix Diagonal: ");
-    Stack<double[]> test = new Stack<>();
-    for (double val: diagonal) {
-     test.push(new double[]{val, -1});
-    }
+    double[][] twoByTwo = {{5, 5}, {-1, 7}};
+    svdCommented(twoByTwo);
+    svdNonCommented(twoByTwo);
 
 
 
-    double[] roots = new double[1];
-    double[] poly = new double[1];
-
-
-    while (!test.empty()) {
-      PolynomialCreator blah = new PolynomialCreator(test.pop());
-      if (!test.empty()) {
-        PolynomialCreator eh = blah.multiply(new PolynomialCreator(test.pop()));
-        test.push(eh.getPoly());
-      } else {
-        poly = blah.getTruePoly(det);
-        roots = new PolynomialCreator(poly).getRoots();
-      }
-    }
-
-
-    for (double val:poly) {
-      System.out.print(val + "\t");
-    }
-
-    System.out.println("\nDeterminant: " + det);
-
-    System.out.print("Eigen Values: ");
-    for (double val:roots) {
-      System.out.print(val + "\t");
-    }
-
-    Stack<Matrix> idens = new Stack<>();
-
-    for (double root: roots) {
-      Matrix iden = new Matrix();
-      iden.createZeroIdentityFromVal(root, roots.length);
-
-      idens.push(iden);
-    }
-
-    Stack<Matrix> newIdens = new Stack<>();
-
-    while (!idens.empty()) {
-      Matrix temp = idens.pop();
-      newIdens.push(new Matrix(square.subtractionMatrix(temp)));
-    }
-
-    System.out.println();
-
-    SVD pppp = new SVD();
-    pppp.createS(roots);
-    Matrix S = new Matrix(pppp.getS());
-
-    Stack<Jama.Matrix> skdjf = new Stack<>();
-
-
-
-    while (!newIdens.empty()) {
-      skdjf.push(new Jama.Matrix(newIdens.pop().getMatrix()));
-    }
-
-    EigenvalueDecomposition party = skdjf.pop().eig();
-    EigenvalueDecomposition party1 = skdjf.pop().eig();
-
-    Jama.Matrix beh = party.getV();
-
-    Matrix V = new Matrix(beh.getArray());
-
-    S.printMatrix();
-    V.printMatrix();
-
-    Matrix U = new Matrix(matrix.multiplyMatrix(V));
-    U.createUnitMatrix(U);
-    U = U.multiplyMatrix(S);
-
-    U.printMatrix();
-
-
-    // Do actions on image and set to new file "imageUpdated"
-//    imageMatrix = matrix.getTransposedMatrix();
-//    image.setImageMatrix(imageMatrix);
-//
 //    ImageIO.write(image.getImage(), "jpg", new File("src/images/imageUpdated.jpg"));
   }
 
@@ -160,11 +52,168 @@ public class Runner {
     while (!matrices.empty()) {
       Matrix matrix = new Matrix(matrices.pop());
       matrix.printMatrixSpecs();
-      matrix.printMatrix();
+      matrix.printMatrixTrim();
 
       matrix.setMatrix(matrix.transposeArray());
       matrix.printMatrixSpecs();
-      matrix.printMatrix();
+      matrix.printMatrixTrim();
     }
+  }
+
+  private static void svdCommented (double[][] twoByTwo) throws FunctionEvaluationException, ConvergenceException {
+    Matrix matrix = new Matrix(twoByTwo);
+    Matrix transpose = matrix.transposeMatrix();
+    Matrix square = transpose.multiplyMatrix(matrix);
+
+    System.out.println("Matrix: Original");
+    matrix.printMatrixTrim();
+
+    System.out.println("Matrix: Transposed");
+    transpose.printMatrixTrim();
+
+    System.out.println("Matrix: Square");
+    square.printMatrixTrim();
+
+    double determinant = square.getDeterminant();
+    double[] squareDiagonal = square.getDiagonal();
+    double[] polynomialRoots = new double[1];
+    double[] polynomialEquation = new double[1];
+
+    Stack<double[]> squarePolynomials = new Stack<>();
+
+    for (double val: squareDiagonal) {
+      squarePolynomials.push(new double[]{val, -1});
+    }
+
+    while (!squarePolynomials.empty()) {
+      PolynomialCreator polynomial = new PolynomialCreator(squarePolynomials.pop());
+
+      if (!squarePolynomials.empty()) {
+        squarePolynomials.push(polynomial.multiply(new PolynomialCreator(squarePolynomials.pop())).getPoly());
+
+      } else {
+        polynomialEquation = polynomial.getTruePoly(determinant);
+        polynomialRoots = new PolynomialCreator(polynomialEquation).getRoots();
+      }
+    }
+
+
+    System.out.print("Polynomial Equation: ");
+    for (int i = polynomialEquation.length - 1; i >= 0; i--) {
+
+      double indexVal = polynomialEquation[i];
+
+      String lambdaString = "λ^" + i;
+      String end = " + ";
+
+      if (i == 0) {
+        end = "\n\n";
+        lambdaString = "";
+      } else if (i == 1){
+        lambdaString = "λ";
+      }
+
+      if (i > 0) {
+        if (polynomialEquation[i - 1] < 0) {
+          end = " - ";
+        }
+      }
+      if (indexVal < 0) {
+        indexVal *= -1;
+      }
+
+      String val = new DecimalFormat("0.#").format(indexVal);
+
+      if (val.equalsIgnoreCase("1")) {
+        System.out.print(lambdaString + end);
+
+      } else {
+        System.out.print(val + lambdaString + end);
+      }
+    }
+
+    System.out.println("Determinant: " + determinant);
+
+    System.out.print("\nEigen Vector: [");
+    for (int i = 0, polynomialRootsLength = polynomialRoots.length; i < polynomialRootsLength; i++) {
+      String end = ", ";
+      if (i == polynomialRootsLength - 1) {
+        end = "]\n\n";
+      }
+      System.out.print(polynomialRoots[i] + end);
+    }
+
+    Stack<Matrix> eigenMatrices = new Stack<>();
+
+    for (double root: polynomialRoots) {
+      Matrix eigenMatrix = new Matrix();
+      eigenMatrix.createZeroIdentityFromVal(root, polynomialRoots.length);
+      eigenMatrix = square.subtractionMatrix(eigenMatrix);
+      eigenMatrices.push(eigenMatrix);
+    }
+
+    SVD svd = new SVD();
+    svd.createS(polynomialRoots);
+    svd.createV(eigenMatrices);
+    svd.createU(matrix);
+
+    Matrix S = new Matrix(svd.getS());
+    Matrix V = new Matrix(svd.getV());
+    Matrix U = new Matrix(svd.getU());
+
+    System.out.println("Matrix: S");
+    S.printMatrixTrim();
+
+    System.out.println("Matrix: V");
+    V.printMatrixTrim();
+
+    System.out.println("Matrix: U");
+    U.printMatrixTrim();
+  }
+
+  private static void svdNonCommented (double[][] twoByTwo) throws FunctionEvaluationException, ConvergenceException {
+    Matrix matrix = new Matrix(twoByTwo);
+    Matrix transpose = matrix.transposeMatrix();
+    Matrix square = transpose.multiplyMatrix(matrix);
+
+    double determinant = square.getDeterminant();
+    double[] squareDiagonal = square.getDiagonal();
+    double[] polynomialRoots = new double[1];
+    double[] polynomialEquation = new double[1];
+
+    Stack<double[]> squarePolynomials = new Stack<>();
+
+    for (double val: squareDiagonal) {
+      squarePolynomials.push(new double[]{val, -1});
+    }
+
+    while (!squarePolynomials.empty()) {
+      PolynomialCreator polynomial = new PolynomialCreator(squarePolynomials.pop());
+
+      if (!squarePolynomials.empty()) {
+        squarePolynomials.push(polynomial.multiply(new PolynomialCreator(squarePolynomials.pop())).getPoly());
+
+      } else {
+        polynomialRoots = new PolynomialCreator(polynomial.getTruePoly(determinant)).getRoots();
+      }
+    }
+
+    Stack<Matrix> eigenMatrices = new Stack<>();
+
+    for (double root: polynomialRoots) {
+      Matrix eigenMatrix = new Matrix();
+      eigenMatrix.createZeroIdentityFromVal(root, polynomialRoots.length);
+      eigenMatrix = square.subtractionMatrix(eigenMatrix);
+      eigenMatrices.push(eigenMatrix);
+    }
+
+    SVD svd = new SVD();
+    svd.createS(polynomialRoots);
+    svd.createV(eigenMatrices);
+    svd.createU(matrix);
+
+    Matrix S = new Matrix(svd.getS());
+    Matrix V = new Matrix(svd.getV());
+    Matrix U = new Matrix(svd.getU());
   }
 }
