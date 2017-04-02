@@ -1,5 +1,4 @@
 import java.text.DecimalFormat;
-import java.util.List;
 
 /**
  * Created by jonathankeys on 3/25/17.
@@ -22,11 +21,11 @@ public class Matrix {
   }
 
   // Matrix Row and Column Counter
-  private int getRowCount() {
+  public int getRowCount() {
     return this.matrix.length;
   }
 
-  private int getColumnCount() {
+  public int getColumnCount() {
     return this.matrix[0].length;
   }
 
@@ -53,11 +52,9 @@ public class Matrix {
 
     double[][] transposedMatrix = new double[columns][rows];
 
-    if (rows > 0) {
-      for (int i = 0; i < columns; i++) {
-        for (int j = 0; j < rows; j++) {
-          transposedMatrix[i][j] = this.matrix[j][i];
-        }
+    for(int i = 0; i < rows; i++) {
+      for(int j = 0; j < columns; j++) {
+        transposedMatrix[j][i] = matrix[i][j];
       }
     }
 
@@ -105,15 +102,15 @@ public class Matrix {
     }
 
     double[][] product = new double[multiplierRows][multiplicandColumns];
+    double[][] r = multiplicand.getMatrix();
 
     for (int i = 0; i < multiplierRows; i++) {
       for (int j = 0; j < multiplicandColumns; j++) {
         for (int k = 0; k < multiplierColumns; k++) {
-          product[i][j] += matrix[i][k] * multiplicand.getMatrix()[k][j];
+          product[i][j] += matrix[i][k] * r[k][j];
         }
       }
     }
-
     return product;
   }
 
@@ -305,7 +302,7 @@ public class Matrix {
   }
 
   //Print matrix
-  public void print (boolean format) {
+  private void print (boolean format) {
     int columns = getColumnCount();
     for (double[] aMatrix : this.matrix) {
       for (int j = 0; j < columns; j++) {
@@ -362,55 +359,63 @@ public class Matrix {
     eh(vector, size, 1);
   }
 
-  public void createIdentityFromVector(double[] vector) {
-    ehh(vector, 1);
-  }
-
-  public void createZeroIdentityFromVector(double[] vector) {
-    ehh(vector, 0);
-  }
-
-  private void ehh (double[] vector, double val) {
+  public void createZeroIdentityFromVector(double[] vector, int rows, int columns) {
     int size = vector.length;
-    double[][] identity = new double[size][size];
+    double[][] identity = new double[rows][columns];
 
-    for (int i = 0; i < size; i++) {
-      for (int j = 0; j < size; j++) {
+    int index = size - 1;
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
         if (i == j){
-          identity[i][j] = vector[i];
+          identity[j][j] = vector[index];
+          index--;
         } else {
-          identity[i][j] = val;
+          identity[i][j] = 0;
         }
       }
     }
     this.matrix = identity;
   }
 
-  private void idkanymore (Matrix UV) {
-    int columns = UV.getColumnCount();
-    int rows = UV.getRowCount();
-    double[][] u = UV.getMatrix();
+  public void createUnitMatrix (Matrix US) {
+    int rows = US.getRowCount();
+    int columns = US.getColumnCount();
+    double[][] U = new double[rows][rows];
+    double[][] temp = US.getMatrix();
 
     for (int i = 0; i < columns; i++) {
       double x = 0;
-      for (int j = 0; j < rows; j++) {
-        x += u[j][i] * u[j][i];
-      }
 
       for (int j = 0; j < rows; j++) {
-        u[j][i] = u[j][i] / Math.sqrt(x);
+        double y = Math.abs(temp[j][i]);
+        x += y * y;
+      }
+
+      x = Math.sqrt(x);
+
+      for (int j = 0; j < rows; j++) {
+        U[j][i] = temp[j][i] / x;
+
+      }
+
+      for (int j = columns; j < rows; j++) {
+        for (int k = columns; k < rows; k++) {
+          if (j != k & U[j][k] == 0) {
+            U[j][k] = 1;
+          }
+        }
       }
     }
 
-    this.matrix = u;
+    this.matrix = U;
   }
 
-  public void createUnitMatrix (Matrix UV) {
-    idkanymore(UV);
-  }
-
-  public void createUnitMatrix (double[][] UV) {
-    idkanymore(new Matrix(UV));
+  public void convertToInt () {
+    for (int i = 0; i < getRowCount(); i++) {
+      for (int j = 0; j < getColumnCount(); j++) {
+        this.matrix[i][j] = (int) Math.round(matrix[i][j]);
+      }
+    }
   }
 
 //  public void scaleMatrix (int scale) {

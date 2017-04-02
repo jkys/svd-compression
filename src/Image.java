@@ -9,7 +9,7 @@ import javax.imageio.ImageIO;
  */
 public class Image {
   private BufferedImage image;
-  private int[][] imageMatrix;
+  private double[][] imageMatrix;
   private int height;
   private int width;
 
@@ -21,7 +21,7 @@ public class Image {
     this.image = ImageIO.read(new File(url));
   }
 
-  public int[][] getImageMatrix () {
+  public double[][] getImageMatrix () {
     createMatrixFromImage();
     return this.imageMatrix;
   }
@@ -34,7 +34,7 @@ public class Image {
     this.height = image.getHeight();
     this.width = image.getWidth();
 
-    this.imageMatrix = new int[this.width][this.height];
+    this.imageMatrix = new double[this.width][this.height];
 
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
@@ -53,7 +53,7 @@ public class Image {
     }
   }
 
-  public void setImageMatrix (int[][] newImageMatrix) {
+  public void setImageMatrix (double[][] newImageMatrix) {
     this.imageMatrix = newImageMatrix;
   }
 

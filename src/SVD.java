@@ -1,5 +1,4 @@
-import Jama.EigenvalueDecomposition;
-import java.util.Stack;
+import java.util.List;
 
 /**
  * Created by jonathankeys on 3/31/17.
@@ -14,42 +13,54 @@ public class SVD {
 
   }
 
-  private void makeS (double[] eigenValues) {
+  public Matrix compose() {
+    Matrix matrixS = new Matrix(S);
+    Matrix matrixU = new Matrix(U);
+    Matrix matrixV = new Matrix(V);
+
+    Matrix US = matrixU.multiplyMatrix(matrixS);
+    Matrix composed = US.multiplyMatrix(matrixV);
+    composed.convertToInt();
+
+    return composed;
+  }
+
+  public void createS (double[] eigenValues, int rows, int columns) {
     for (int i = 0, eigenLength = eigenValues.length; i < eigenLength; i++) {
       eigenValues[i] = Math.sqrt(eigenValues[i]);
     }
 
     Matrix matrixS = new Matrix();
-    matrixS.createZeroIdentityFromVector(eigenValues);
-
+    matrixS.createZeroIdentityFromVector(eigenValues, rows, columns);
     setS(matrixS.getMatrix());
   }
 
-  private void makeV (Stack<Matrix> eigenMatrices) {
-    Stack<EigenvalueDecomposition> eigenDecompositions = new Stack<>();
-    while (!eigenMatrices.empty()) {
-      eigenDecompositions.push(new Jama.Matrix(eigenMatrices.pop().getMatrix()).eig());
+  public void createV (List<Matrix> eigenMatrices, int columns) {
+
+    new Jama.EigenvalueDecomposition(new Jama.Matrix(eigenMatrices.get(0).getMatrix())).getRealEigenvalues();
+    Matrix V = new Matrix(new Jama.Matrix(eigenMatrices.get(0).getMatrix()).eig().getV().getArray());
+    double[][] e = V.getMatrix();
+    int size = e.length;
+    for (int i = 0; i < e.length; i++) {
+      double[] temp = e[i];
+      e[i] = e[size - 1];
+      e[size - 1] = temp;
     }
 
-    setV(eigenDecompositions.pop().getV().getArray());
-  }
 
-  private void makeU (Matrix matrix) {
-    Matrix U = new Matrix(matrix.multiplyMatrix(new Matrix(getV())));
-    U.createUnitMatrix(U);
-    setU(U.multiplyMatrix(new Matrix(getS())).getMatrix());
-  }
 
-  public void createS (double[] eigenValues) {
-    makeS(eigenValues);
-  }
-
-  public void createV (Stack<Matrix> eigenMatrices) {
-    makeV(eigenMatrices);
+    V = new Matrix(e);
+    V = V.transposeMatrix();
+    setV(V.getMatrix());
   }
 
   public void  createU (Matrix matrix) {
-    makeU(matrix);
+    Matrix US = new Matrix(matrix.multiplyMatrix(new Matrix(getV())));
+
+    Matrix U = new Matrix();
+    U.createUnitMatrix(US);
+
+    setU(U.getMatrix());
   }
 
   public double[][] getS () {
