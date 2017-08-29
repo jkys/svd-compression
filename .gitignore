@@ -20,6 +20,10 @@
 *.tar
 *.zip
 
+# intellij files
+*.iml
+.idea/*
+
 # Logs and databases #
 ######################
 *.log
