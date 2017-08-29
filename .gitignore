@@ -23,6 +23,7 @@
 # intellij files
 *.iml
 .idea/*
+target/*
 
 # Logs and databases #
 ######################
