@@ -2,16 +2,14 @@ import java.util.List;
 
 /**
  * Created by jonathankeys on 3/31/17.
+ *
+ * SVD Class to run and perform operations of matrices to follow the Singular Value Decomposition algorithim.
  */
 public class SVD {
 
     private double[][] S;
     private double[][] U;
     private double[][] V;
-
-    public SVD() {
-
-    }
 
     public Matrix compose() {
         Matrix matrixS = new Matrix(S);
@@ -32,13 +30,18 @@ public class SVD {
 
         Matrix matrixS = new Matrix();
         matrixS.createZeroIdentityFromVector(eigenValues, rows, columns);
-        setS(matrixS.getMatrix());
+        S = matrixS.getMatrix();
     }
 
-    public void createV(List<Matrix> eigenMatrices, int columns) {
+    public void createV(List<Matrix> eigenMatrices) {
+        Matrix V = new Matrix(
+              new Jama.Matrix(eigenMatrices
+                    .get(0)
+                    .getMatrix())
+                    .eig()
+                    .getV()
+                    .getArray());
 
-        new Jama.EigenvalueDecomposition(new Jama.Matrix(eigenMatrices.get(0).getMatrix())).getRealEigenvalues();
-        Matrix V = new Matrix(new Jama.Matrix(eigenMatrices.get(0).getMatrix()).eig().getV().getArray());
         double[][] e = V.getMatrix();
         int size = e.length;
         for (int i = 0; i < e.length; i++) {
@@ -47,18 +50,16 @@ public class SVD {
             e[size - 1] = temp;
         }
 
-        V = new Matrix(e);
-        V = V.transposeMatrix();
-        setV(V.getMatrix());
+        this.V = new Matrix(e).transposeMatrix().getMatrix();
     }
 
     public void createU(Matrix matrix) {
-        Matrix US = new Matrix(matrix.multiplyMatrix(new Matrix(getV())));
+        Matrix US = new Matrix(matrix.multiplyMatrix(new Matrix(this.V)));
 
         Matrix U = new Matrix();
         U.createUnitMatrix(US);
 
-        setU(U.getMatrix());
+        this.U = U.getMatrix();
     }
 
     public double[][] getS() {
@@ -71,17 +72,5 @@ public class SVD {
 
     public double[][] getV() {
         return this.V;
-    }
-
-    private void setS(double[][] S) {
-        this.S = S;
-    }
-
-    private void setU(double[][] U) {
-        this.U = U;
-    }
-
-    private void setV(double[][] V) {
-        this.V = V;
     }
 }
