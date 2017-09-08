@@ -16,8 +16,6 @@ public class Runner {
         double[][] imageMatrix = image.getImageMatrix();
 
         double[][] twoByTwo = {{5, 5}, {-1, 7}};
-        double[][] threeByTwo = {{5, 5, 7}, {-1, 7, 8}};
-        double[][] fourByTwo = {{2, 4}, {1, 3}, {0, 0}, {0, 0}};
         svdCommented(twoByTwo);
 
         int rank = 100;
@@ -106,7 +104,7 @@ public class Runner {
         System.out.println("Matrix: S");
         S.printMatrixTrim();
 
-        svd.createV(eigenMatrices, matrix.getColumnCount());
+        svd.createV(eigenMatrices);
         Matrix V = new Matrix(svd.getV());
         System.out.println("Matrix: V");
         V.printMatrixTrim();
