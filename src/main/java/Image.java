@@ -61,10 +61,6 @@ public class Image {
         this.imageMatrix = newImageMatrix;
     }
 
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
-
     public BufferedImage createImage(double[][] matrix) {
         BufferedImage newImage = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_INT_RGB);
         for (int i = 0; i < matrix[0].length; i++) {
@@ -73,7 +69,6 @@ public class Image {
                 newImage.setRGB(i, j, val);
             }
         }
-
         return newImage;
     }
 }
