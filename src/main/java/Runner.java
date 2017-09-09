@@ -4,9 +4,14 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import org.apache.commons.math.ConvergenceException;
 import org.apache.commons.math.FunctionEvaluationException;
+import util.Image;
+import util.Matrix;
+import util.SVD;
 
 /**
  * Created by jonathankeys on 3/25/17
+ *
+ * Class used to initially create and build the application.
  */
 public class Runner {
 
@@ -77,13 +82,13 @@ public class Runner {
         Matrix transpose = matrix.transposeMatrix();
         Matrix square = transpose.multiplyMatrix(matrix);
 
-        System.out.println("Matrix: Original");
+        System.out.println("util.Matrix: Original");
         matrix.printMatrixTrim();
 
-        System.out.println("Matrix: Transposed");
+        System.out.println("util.Matrix: Transposed");
         transpose.printMatrixTrim();
 
-        System.out.println("Matrix: Square");
+        System.out.println("util.Matrix: Square");
         square.printMatrixTrim();
 
         Jama.EigenvalueDecomposition r = new Jama.EigenvalueDecomposition(new Jama.Matrix(square.getMatrix()));
@@ -101,21 +106,21 @@ public class Runner {
 
         svd.createS(r.getRealEigenvalues(), matrix.getRowCount(), matrix.getColumnCount());
         Matrix S = new Matrix(svd.getS());
-        System.out.println("Matrix: S");
+        System.out.println("util.Matrix: S");
         S.printMatrixTrim();
 
         svd.createV(eigenMatrices);
         Matrix V = new Matrix(svd.getV());
-        System.out.println("Matrix: V");
+        System.out.println("util.Matrix: V");
         V.printMatrixTrim();
 
         svd.createU(matrix);
         Matrix U = new Matrix(svd.getU());
-        System.out.println("Matrix: U");
+        System.out.println("util.Matrix: U");
         U.printMatrixTrim();
 
         Matrix SUV = new Matrix(svd.compose());
-        System.out.println("Matrix: Reconstructed");
+        System.out.println("util.Matrix: Reconstructed");
         SUV.printMatrix();
     }
 }

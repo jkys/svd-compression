@@ -1,3 +1,5 @@
+package util;
+
 import java.text.DecimalFormat;
 
 /**
@@ -20,7 +22,7 @@ public class Matrix {
 
     }
 
-    // Matrix Row and Column Counter
+    // util.Matrix Row and Column Counter
     public int getRowCount() {
         return this.matrix.length;
     }
