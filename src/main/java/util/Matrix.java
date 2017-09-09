@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 
 /**
  * Created by jonathankeys on 3/25/17.
+ *
+ * Provides operations on Matrices to be used within the SVD algorithm.
  */
 public class Matrix {
 
@@ -152,7 +154,7 @@ public class Matrix {
         this.matrix = identity;
     }
 
-    public void createZeroIdentityFromVector(double[] vector, int rows, int columns) {
+    void createZeroIdentityFromVector(double[] vector, int rows, int columns) {
         int size = vector.length;
         double[][] identity = new double[rows][columns];
 
@@ -170,7 +172,7 @@ public class Matrix {
         this.matrix = identity;
     }
 
-    public void createUnitMatrix(Matrix US) {
+    void createUnitMatrix(Matrix US) {
         int rows = US.getRowCount();
         int columns = US.getColumnCount();
         double[][] U = new double[rows][rows];
@@ -203,7 +205,7 @@ public class Matrix {
         this.matrix = U;
     }
 
-    public void convertToInt() {
+    void convertToInt() {
         for (int i = 0; i < getRowCount(); i++) {
             for (int j = 0; j < getColumnCount(); j++) {
                 this.matrix[i][j] = (int) Math.round(matrix[i][j]);

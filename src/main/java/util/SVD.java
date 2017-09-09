@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by jonathankeys on 3/31/17.
  *
- * util.SVD Class to run and perform operations of matrices to follow the Singular Value Decomposition algorithim.
+ * SVD Class to run and perform operations of matrices to follow the Singular Value Decomposition algorithim.
  */
 public class SVD {
 

@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 
 /**
  * Created by jonathankeys on 3/26/17.
+ *
+ * Image class to hold and set actions on an image such as creating a matrix from it.
  */
 public class Image {
 
@@ -23,7 +25,7 @@ public class Image {
     public Image() throws IOException {
     }
 
-    public void setImage(String url) throws IOException {
+    private void setImage(String url) throws IOException {
         this.image = ImageIO.read(new File(url));
     }
 
