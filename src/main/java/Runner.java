@@ -19,37 +19,15 @@ public class Runner {
         // Create matrix from image
         Image image = new Image("src/images/image4.jpg");
         double[][] imageMatrix = image.getImageMatrix();
-
-        double[][] twoByTwo = {{5, 5}, {-1, 7}};
-        svdCommented(twoByTwo);
+        svdCommented(imageMatrix);
 
         int rank = 100;
 
         imageMatrix = svd(imageMatrix, rank);
-
         image.setImageMatrix(imageMatrix);
         image.createImageFromMatrix();
 
         ImageIO.write(image.getImage(), "jpg", new File("src/images/imageUpdated.jpg"));
-    }
-
-    private static double[][] rankedMatrixS(Matrix matrix, int rank) {
-        double[][] rankedMatrix = new double[rank][rank];
-        for (int i = 0; i < rank; i++) {
-            double[] rowMatrix = matrix.getMatrix()[i];
-            System.arraycopy(rowMatrix, 0, rankedMatrix[i], 0, rank);
-        }
-        return rankedMatrix;
-    }
-
-    private static double[][] rankedMatrixUV(Matrix matrix, int rank) {
-        int rows = matrix.getRowCount();
-        double[][] rankedMatrix = new double[rows][rank];
-        for (int i = 0; i < rows; i++) {
-            double[] rowMatrix = matrix.getMatrix()[i];
-            System.arraycopy(rowMatrix, 0, rankedMatrix[i], 0, rank);
-        }
-        return rankedMatrix;
     }
 
     private static double[][] svd(double[][] imageMatrix, int rank) throws Exception {
@@ -65,9 +43,9 @@ public class Runner {
         Jama.Matrix V = matrix.svd().getV();
         Jama.Matrix U = matrix.svd().getU();
 
-        S = new Jama.Matrix(rankedMatrixS(new Matrix(S.getArray()), rank));
-        V = new Jama.Matrix(rankedMatrixUV(new Matrix(V.getArray()), rank));
-        U = new Jama.Matrix(rankedMatrixUV(new Matrix(U.getArray()), rank));
+        S = new Jama.Matrix(Matrix.rankedMatrixS(new Matrix(S.getArray()), rank));
+        V = new Jama.Matrix(Matrix.rankedMatrixUV(new Matrix(V.getArray()), rank));
+        U = new Jama.Matrix(Matrix.rankedMatrixUV(new Matrix(U.getArray()), rank));
 
         ImageIO.write(new Image().createImage(S.getArray()), "jpg", new File("src/images/S.jpg"));
         ImageIO.write(new Image().createImage(V.getArray()), "jpg", new File("src/images/V.jpg"));

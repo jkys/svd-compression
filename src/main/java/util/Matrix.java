@@ -212,4 +212,23 @@ public class Matrix {
             }
         }
     }
+
+    public static double[][] rankedMatrixS(Matrix matrix, int rank) {
+        double[][] rankedMatrix = new double[rank][rank];
+        for (int i = 0; i < rank; i++) {
+            double[] rowMatrix = matrix.getMatrix()[i];
+            System.arraycopy(rowMatrix, 0, rankedMatrix[i], 0, rank);
+        }
+        return rankedMatrix;
+    }
+
+    public static double[][] rankedMatrixUV(Matrix matrix, int rank) {
+        int rows = matrix.getRowCount();
+        double[][] rankedMatrix = new double[rows][rank];
+        for (int i = 0; i < rows; i++) {
+            double[] rowMatrix = matrix.getMatrix()[i];
+            System.arraycopy(rowMatrix, 0, rankedMatrix[i], 0, rank);
+        }
+        return rankedMatrix;
+    }
 }
